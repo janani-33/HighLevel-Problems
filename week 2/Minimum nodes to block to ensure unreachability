@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        int adj[][]=new int[][]{{0,1,0,1,0},
+                                  {0,1,0,1,1},
+                                  {0,0,0,1,0},
+                                  {0,0,0,0,1},
+                                  {0,0,0,0,0}};
+
+        Graph g=new Graph();
+        g.findpath(adj,5,0,4);
+    }
+}
+class Graph{
+    int count=0;
+    void findpath(int adj[][],int V,int src,int target){
+        boolean visited[] = new boolean[V];
+        ArrayList<Integer> path= new ArrayList<>();
+        path.add(src);
+        removepath(adj,V,src,target,visited,path);
+        System.out.print(count);
+    }
+    void removepath(int[][] adj,int V,int src,int target,boolean[] visited, List<Integer> path){
+        if (src==target) {
+            int prev=path.get(path.size()-2);
+            count++;
+            adj[prev][target]=0;
+            return;
+        }
+        visited[src]=true;
+        for(int i=0;i<V;i++) {
+            if(adj[src][i]==1 && !visited[i]) {
+                path.add(i);
+                removepath(adj,V,i,target,visited,path);
+                path.remove(path.size() - 1);
+            }
+        }
+        visited[src]=false;
+    }
+}
