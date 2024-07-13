@@ -1,0 +1,44 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        int edge[]=new int[n];
+        for(int i=0;i<n;i++)
+        edge[i]=s.nextInt();
+        int node1=s.nextInt();
+        int node2=s.nextInt();
+        ArrayList<Integer> list=new ArrayList<>();
+        boolean[] v=new boolean[n];
+        findpath(node1,node2,edge,list);
+        while(true){
+            if(list.contains(node2) || node2==node1){
+                System.out.print(node2);
+                break;
+            }
+            else if(node2==-1 || v[node2]){
+                System.out.print("-1");
+                break;
+            }
+            v[node2]=true;
+            node2=edge[node2];
+        }
+    }
+    static void findpath(int index,int t,int[] edge,ArrayList<Integer> list){
+        if(list.contains(index) || index==-1)
+        return;
+        if(index==t){
+            list.add(index);
+            return;
+        }
+        list.add(index);
+        findpath(edge[index],t,edge,list);
+    }
+}
+/*Sample Input :
+23
+4 4 1 4 13 8 8 8 0 8 14 9 15 11 -1 10 15 22 22 22 22 22 21
+9 2
+Sample Output :
+4
+*/
