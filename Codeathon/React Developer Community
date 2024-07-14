@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int n=5;
+        int adj[][]=new int[][]{{0,1,0,1,0},
+                                  {1,0,0,1,1},
+                                  {0,0,0,1,0},
+                                  {1,0,1,0,0},
+                                  {0,1,0,0,0}};
+        int src=s.nextInt();
+        int des=s.nextInt();
+        Queue<Integer> q=new LinkedList<>();
+        boolean v[]=new boolean[n];
+        boolean flag=false;
+        q.add(src);
+        while(!q.isEmpty()){
+            int p=q.remove();
+            v[p]=true;
+            if(p==des){
+                flag=true;
+                break;
+            }
+            for(int i=0;i<n;i++){
+                if(adj[p][i]==1 && !v[i])
+                q.add(i);
+            }
+        }
+        System.out.print(flag);
+    }
+}
