@@ -1,13 +1,13 @@
 import java.util.*;
 class Main
 {
-    static int graph[][];
+        static int graph[][];
 	static ArrayList<Integer> nb=new ArrayList<>();
 	static List<List<Integer>> res=new ArrayList<>();
-    public static void addEdge(int a,int b){
-        graph[a][b]=1;
-        graph[b][a]=1;
-    }
+        public static void addEdge(int a,int b){
+            graph[a][b]=1;
+            graph[b][a]=1;
+        }
 	public static void main (String[] args)
 	{
 		Scanner s=new Scanner(System.in);
